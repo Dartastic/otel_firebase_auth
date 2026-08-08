@@ -49,7 +49,7 @@ Future<R> _traced<R>(
     return await op(span);
   } on FirebaseAuthException catch (e, st) {
     span.addAttributes(OTel.attributes([
-      OTel.attributeString(ErrorResource.errorType.key, e.code),
+      OTel.attributeString(ErrorAttributes.errorType.key, e.code),
     ]));
     span.recordException(e, stackTrace: st);
     span.setStatus(SpanStatusCode.Error, e.message ?? e.code);
@@ -57,7 +57,7 @@ Future<R> _traced<R>(
   } catch (e, st) {
     span.addAttributes(OTel.attributes([
       OTel.attributeString(
-        ErrorResource.errorType.key,
+        ErrorAttributes.errorType.key,
         e.runtimeType.toString(),
       ),
     ]));

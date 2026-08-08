@@ -5,7 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0-beta.1-wip]
+## [0.2.0-wip]
+
+### Changed
+
+- Semantic conventions aligned with the current OTel registry:
+  `enduser.id` and `error.type` come from the API's semconv enums;
+  the not-yet-registered `auth.*` keys live in the typed
+  `FirebaseAuthSemantics` enum (no raw string keys emitted).
+- Dependency floors raised to `dartastic_opentelemetry ^1.1.0-beta.12` and
+  `dartastic_opentelemetry_api ^1.0.0-rc.1`. The previous floors declared
+  compatibility with API versions that predate the semconv enums this
+  package uses and could not actually resolve-and-compile.
+- `repository` URL corrected to the canonical `Dartastic` org casing so
+  pub.dev repository verification succeeds.
+- `firebase_auth` floor raised to `^6.0.0` (latest major;
+  `firebase_auth_mocks` to `^0.15.0` to match). Analyzer and the full
+  test suite verified at both the `6.0.0` lower bound and the current
+  `6.5.7`.
 
 ### Added
 
@@ -31,9 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Generic exceptions fall back to runtime-class `error.type`.
 - `runWithoutFirebaseAuthInstrumentation` /
   `runWithoutFirebaseAuthInstrumentationAsync` — zone-scoped
-  suppression helpers, matching `dartastic_grpc_otel`,
-  `dartastic_http_otel`, `dartastic_web_socket_channel_otel`, and
-  `dartastic_cloud_firestore_otel`.
+  suppression helpers, matching `otel_grpc`, `otel_http`,
+  `otel_web_socket_channel`, and `otel_cloud_firestore`.
 - `FirebaseAuthSemantics` — typed attribute-key enum holding
   `auth.system`, `auth.operation`, `auth.provider` until upstream
   semconv covers identity operations natively.
