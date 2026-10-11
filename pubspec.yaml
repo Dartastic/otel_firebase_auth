@@ -2,7 +2,7 @@ name: otel_firebase_auth
 description: OpenTelemetry instrumentation for `package:firebase_auth`.
   Extension methods on FirebaseAuth that wrap signIn/signOut/createUser
   calls with `auth.*` and `enduser.*` semconv spans.
-version: 0.3.0-wip
+version: 1.0.0-wip
 repository: https://github.com/dartastic/otel_firebase_auth
 homepage: https://dartastic.io
 
@@ -11,8 +11,8 @@ environment:
   flutter: ">=3.0.0"
 
 dependencies:
-  dartastic_opentelemetry: ^1.1.0-beta.12
-  dartastic_opentelemetry_api: ^1.0.0-rc.1
+  dartastic_opentelemetry: ^1.1.0-beta.17
+  dartastic_opentelemetry_api: '>=1.0.0-rc.4 <1.0.0-rc.5'
   firebase_auth: ^6.0.0
   flutter:
     sdk: flutter
